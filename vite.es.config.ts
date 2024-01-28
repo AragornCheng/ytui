@@ -8,25 +8,30 @@ import vueJsx from '@vitejs/plugin-vue-jsx'
 
 // https://vitejs.dev/config/
 export default defineConfig({
-    plugins: [vue(), vueJsx(), dts()],
+    plugins: [
+        vue(),
+        vueJsx(),
+        dts({
+            outDir: 'dist/types'
+        })
+    ],
     resolve: {
         alias: {
             '@': fileURLToPath(new URL('./src', import.meta.url))
         }
     },
     build: {
+        outDir: 'dist/es',
         lib: {
             entry: resolve(__dirname, 'src/index.ts'),
             name: 'YtUI',
-            fileName: 'yt-ui'
+            fileName: 'yt-ui',
+            formats: ['es']
         },
         rollupOptions: {
-            external: ['vue'],
+            external: ['vue', 'axios'],
             output: {
                 exports: 'named',
-                globals: {
-                    vue: 'Vue'
-                },
                 assetFileNames: (chunkInfo) => {
                     if (chunkInfo.name === 'style.css') {
                         return 'index.css'
