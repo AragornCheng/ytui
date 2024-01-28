@@ -1,0 +1,117 @@
+.yt-button {
+    --yt-button-font-weight: var(--yt-font-weight-primary);
+    --yt-button-border-color: var(--yt-border-color);
+    --yt-button-bg-color: var(--yt-fill-color-blank);
+    --yt-button-text-color: var(--yt-text-color-regular);
+    --yt-button-disabled-text-color: var(--yt-disabled-text-color);
+    --yt-button-disabled-bg-color: var(--yt-fill-color-blank);
+    --yt-button-disabled-border-color: var(--yt-border-color-light);
+    --yt-button-divide-border-color: rgba(255, 255, 255, 0.5);
+    --yt-button-hover-text-color: var(--yt-color-primary);
+    --yt-button-hover-bg-color: var(--yt-color-primary-light-9);
+    --yt-button-hover-border-color: var(--yt-color-primary-light-7);
+    --yt-button-active-text-color: var(--yt-button-hover-text-color);
+    --yt-button-active-border-color: var(--yt-color-primary);
+    --yt-button-active-bg-color: var(--yt-button-hover-bg-color);
+    --yt-button-outline-color: var(--yt-color-primary-light-5);
+    --yt-button-hover-link-text-color: var(--yt-color-info);
+    --yt-button-active-color: var(--yt-text-color-primary);
+}
+.yt-button {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    line-height: 1;
+    height: 32px;
+    white-space: nowrap;
+    cursor: pointer;
+    color: var(--yt-button-text-color);
+    text-align: center;
+    box-sizing: border-box;
+    outline: none;
+    transition: 0.1s;
+    font-weight: var(--yt-button-font-weight);
+    user-select: none;
+    vertical-align: middle;
+    -webkit-appearance: none;
+    background-color: var(--yt-button-bg-color);
+    border: var(--yt-border);
+    border-color: var(--yt-button-border-color);
+    padding: 8px 15px;
+    font-size: var(--yt-font-size-base);
+    border-radius: var(--yt-border-radius-base);
+    &:hover,
+    &:focus {
+        color: var(--yt-button-hover-text-color);
+        border-color: var(--yt-button-hover-border-color);
+        background-color: var(--yt-button-hover-bg-color);
+        outline: none;
+    }
+    &.is-plain {
+        --yt-button-hover-text-color: var(--yt-color-primary);
+        --yt-button-hover-bg-color: var(--yt-fill-color-blank);
+        --yt-button-hover-border-color: var(--yt-color-primary);
+    }
+    &.is-round {
+        border-radius: var(--yt-border-radius-round);
+    }
+    &.is-circle {
+        width: 32px;
+        border-radius: 50%;
+        padding: 8px;
+    }
+
+    /* disabled */
+    &.is-disabled,
+    &.is-disabled:hover,
+    &.is-disabled:focus {
+        color: var(--yt-button-disabled-text-color);
+        cursor: not-allowed;
+        background-image: none;
+        background-color: var(--yt-button-disabled-bg-color);
+        border-color: var(--yt-button-disabled-border-color);
+    }
+}
+
+@each $val in primary, success, warning, danger, info {
+    .yt-button--$(val) {
+        --yt-button-text-color: var(--yt-color-white);
+        --yt-button-bg-color: var(--yt-color-$(val));
+        --yt-button-border-color: var(--yt-color-$(val));
+        --yt-button-outline-color: var(--yt-color-$(val)-light-5);
+        --yt-button-active-color: var(--yt-color-$(val)-dark-2);
+        --yt-button-hover-text-color: var(--yt-color-white);
+        --yt-button-hover-bg-color: var(--yt-color-$(val)-dark-2);
+        --yt-button-hover-border-color: var(--yt-color-$(val)-dark-2);
+        --yt-button-active-bg-color: var(--yt-color-$(val)-dark-2);
+        --yt-button-active-border-color: var(--yt-color-$(val)-dark-2);
+        --yt-button-disabled-text-color: var(--yt-color-white);
+        --yt-button-disabled-bg-color: var(--yt-color-$(val)-light-3);
+        --yt-button-disabled-border-color: var(--yt-color-$(val)-light-3);
+    }
+    .yt-button--$(val).is-plain {
+        --yt-button-text-color: var(--yt-color-$(val));
+        --yt-button-bg-color: var(--yt-color-$(val)-light-9);
+        --yt-button-border-color: var(--yt-color-$(val)-light-5);
+        --yt-button-hover-text-color: var(--yt-color-white);
+        --yt-button-hover-bg-color: var(--yt-color-$(val));
+        --yt-button-hover-border-color: var(--yt-color-$(val));
+        --yt-button-active-text-color: var(--yt-color-white);
+    }
+}
+
+.yt-button--large {
+    --yt-button-size: 40px;
+    height: var(--yt-button-size);
+    padding: 12px 19px;
+    font-size: var(--yt-font-size-base);
+    border-radius: var(--yt-border-radius-base);
+}
+
+.yt-button--small {
+    --yt-button-size: 24px;
+    height: var(--yt-button-size);
+    padding: 5px 11px;
+    font-size: 12px;
+    border-radius: calc(var(--yt-border-radius-base) - 1px);
+}

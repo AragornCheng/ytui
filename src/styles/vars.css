@@ -1,0 +1,110 @@
+:root {
+    color-scheme: light;
+    --yt-color-white: #ffffff;
+    --yt-color-black: #000000;
+    --colors: (
+        primary: #409eff,
+        success: #67c23a,
+        warning: #e6a23c,
+        danger: #f56c6c,
+        info: #909399
+    );
+
+    @each $val, $color in var(--colors) {
+        --yt-color-$(val): $(color);
+        @for $i from 3 to 9 by 2 {
+            --yt-color-$(val)-light-$(i): mix(#fff, $(color), .$(i));
+        }
+        --yt-color-$(val)-light-8: mix(#fff, $(color), 0.8);
+        --yt-color-$(val)-dark-2: mix(#fff, $(color), 0.2);
+    }
+
+    --yt-bg-color: #ffffff;
+    --yt-bg-color-page: #f2f3f5;
+    --yt-bg-color-overlay: #ffffff;
+    --yt-text-color-primary: #303133;
+    --yt-text-color-regular: #606266;
+    --yt-text-color-secondary: #909399;
+    --yt-text-color-placeholder: #a8abb2;
+    --yt-text-color-disabled: #c0c4cc;
+    --yt-border-color: #dcdfe6;
+    --yt-border-color-light: #e4e7ed;
+    --yt-border-color-lighter: #ebeef5;
+    --yt-border-color-extra-light: #f2f6fc;
+    --yt-border-color-dark: #d4d7de;
+    --yt-border-color-darker: #cdd0d6;
+    --yt-fill-color: #f0f2f5;
+    --yt-fill-color-light: #f5f7fa;
+    --yt-fill-color-lighter: #fafafa;
+    --yt-fill-color-extra-light: #fafcff;
+    --yt-fill-color-dark: #ebedf0;
+    --yt-fill-color-darker: #e6e8eb;
+    --yt-fill-color-blank: #ffffff;
+
+    /* border */
+    --yt-border-width: 1px;
+    --yt-border-style: solid;
+    --yt-border-color-hover: var(--yt-text-color-disabled);
+    --yt-border: var(--yt-border-width) var(--yt-border-style) var(--yt-border-color);
+    --yt-border-radius-base: 4px;
+    --yt-border-radius-small: 2px;
+    --yt-border-radius-round: 20px;
+    --yt-border-radius-circle: 100%;
+
+    /* font */
+    --yt-font-size-extra-large: 20px;
+    --yt-font-size-large: 18px;
+    --yt-font-size-medium: 16px;
+    --yt-font-size-base: 14px;
+    --yt-font-size-small: 13px;
+    --yt-font-size-extra-small: 12px;
+    --yt-font-family: 'Helvetica Neue', Helvetica, 'PingFang SC', 'Hiragino Sans GB',
+        'Microsoft YaHei', '\5fae\8f6f\96c5\9ed1', Arial, sans-serif;
+    --yt-font-weight-primary: 500;
+    --yt-font-line-height-primary: 24px;
+
+    /* disabled */
+    --yt-disabled-bg-color: var(--yt-fill-color-light);
+    --yt-disabled-text-color: var(--yt-text-color-placeholder);
+    --yt-disabled-border-color: var(--yt-border-color-light);
+
+    /* box-shadow */
+    --yt-box-shadow: 0px 12px 32px 4px rgba(0, 0, 0, 0.04), 0px 8px 20px rgba(0, 0, 0, 0.08);
+    --yt-box-shadow-light: 0px 0px 12px rgba(0, 0, 0, 0.12);
+    --yt-box-shadow-lighter: 0px 0px 6px rgba(0, 0, 0, 0.12);
+    --yt-box-shadow-dark: 0px 16px 48px 16px rgba(0, 0, 0, 0.08), 0px 12px 32px rgba(0, 0, 0, 0.12),
+        0px 8px 16px -8px rgba(0, 0, 0, 0.16);
+
+    /* transition */
+    --yt-transition-duration: 0.3s;
+    --yt-transition-duration-fast: 0.2s;
+    --yt-transition-function-ease-in-out-bezier: cubic-bezier(0.645, 0.045, 0.355, 1);
+    --yt-transition-function-fast-bezier: cubic-bezier(0.23, 1, 0.32, 1);
+    --yt-transition-all: all var(--yt-transition-duration)
+        var(--yt-transition-function-ease-in-out-bezier);
+    --yt-transition-fade: opacity var(--yt-transition-duration)
+        var(--yt-transition-function-fast-bezier);
+    --yt-transition-md-fade: transform var(--yt-transition-duration)
+            var(--yt-transition-function-fast-bezier),
+        opacity var(--yt-transition-duration) var(--yt-transition-function-fast-bezier);
+    --yt-transition-fade-linear: opacity var(--yt-transition-duration-fast) linear;
+    --yt-transition-border: border-color var(--yt-transition-duration-fast)
+        var(--yt-transition-function-ease-in-out-bezier);
+    --yt-transition-box-shadow: box-shadow var(--yt-transition-duration-fast)
+        var(--yt-transition-function-ease-in-out-bezier);
+    --yt-transition-color: color var(--yt-transition-duration-fast)
+        var(--yt-transition-function-ease-in-out-bezier);
+
+    --yt-overlay-color: rgba(0, 0, 0, 0.8);
+    --yt-overlay-color-light: rgba(0, 0, 0, 0.7);
+    --yt-overlay-color-lighter: rgba(0, 0, 0, 0.5);
+    --yt-mask-color: rgba(255, 255, 255, 0.9);
+    --yt-mask-color-extra-light: rgba(255, 255, 255, 0.3);
+    --yt-svg-monochrome-grey: var(--yt-border-color);
+    --yt-index-normal: 1;
+    --yt-index-top: 1000;
+    --yt-index-popper: 2000;
+    --yt-component-size-large: 40px;
+    --yt-component-size: 32px;
+    --yt-component-size-small: 24px;
+}
