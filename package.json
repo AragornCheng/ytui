@@ -6,6 +6,9 @@
   "files": [
     "dist"
   ],
+  "sideEffects": [
+    "dist/index.css"
+  ],
   "main": "./dist/umd/yt-ui.umd.cjs",
   "module": "./dist/es/yt-ui.js",
   "types": "./dist/types/index.d.ts",
@@ -13,21 +16,28 @@
     ".": {
       "import": "./dist/es/yt-ui.js",
       "require": "./dist/umd/yt-ui.umd.cjs"
+    },
+    "./dist/": {
+      "import": "./dist/",
+      "require": "./dist/"
     }
   },
   "scripts": {
     "dev": "vite",
-    "build": "run-p build-umd build-es",
+    "build": "pnpm run build-only && pnpm run move-style",
     "preview": "vite preview",
-    "build-only": "vite build",
+    "build-only": "run-p build-umd build-es",
     "build-umd": "vite build --config vite.umd.config.ts",
     "build-es": "vite build --config vite.es.config.ts",
+    "move-style": "move-file dist/es/index.css dist/index.css",
     "type-check": "vue-tsc --build --force",
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore",
     "format": "prettier --write src/"
   },
   "dependencies": {
-    "axios": "^1.6.7",
+    "axios": "^1.6.7"
+  },
+  "peerDependencies": {
     "vue": "^3.3.11"
   },
   "devDependencies": {
@@ -43,6 +53,7 @@
     "eslint": "^8.49.0",
     "eslint-plugin-vue": "^9.17.0",
     "jsdom": "^24.0.0",
+    "move-file-cli": "^3.0.0",
     "npm-run-all2": "^6.1.1",
     "postcss": "^8.4.33",
     "postcss-color-mix": "^1.1.0",
@@ -55,6 +66,7 @@
     "vite": "^5.0.10",
     "vite-plugin-dts": "^3.7.2",
     "vitest": "^1.2.2",
+    "vue": "^3.3.11",
     "vue-tsc": "^1.8.25"
   }
 }
